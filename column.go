@@ -63,21 +63,25 @@ func (c column) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				f := NewForm(task.title, task.description)
 				f.index = c.list.Index()
 				f.col = c
+				updateCSV()
 				return f.Update(nil)
 			}
 		case key.Matches(msg, keys.New):
 			f := newDefaultForm()
 			f.index = APPEND
 			f.col = c
+			updateCSV()
 			return f.Update(nil)
 		case key.Matches(msg, keys.Delete):
 			return c, c.DeleteCurrent()
 		case key.Matches(msg, keys.Enter):
+			updateCSV()
 			return c, c.MoveToNext()
 		}
 	}
 
 	c.list, cmd = c.list.Update(msg)
+	updateCSV()
 	return c, cmd
 }
 

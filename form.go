@@ -54,11 +54,13 @@ func (f Form) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case key.Matches(msg, keys.Back):
 			return board.Update(nil)
 		case key.Matches(msg, keys.Enter):
+			// If the title is focused, blur it and focus the description
 			if f.title.Focused() {
 				f.title.Blur()
 				f.description.Focus()
 				return f, textarea.Blink
 			}
+			updateCSV()
 			return board.Update(f)
 		}
 	}
