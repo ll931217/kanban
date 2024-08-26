@@ -60,7 +60,6 @@ func (f Form) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				f.description.Focus()
 				return f, textarea.Blink
 			}
-			updateCSV()
 			return board.Update(f)
 		}
 	}
