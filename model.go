@@ -70,6 +70,7 @@ func (m *Board) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m *Board) View() string {
 	if m.quitting {
+		updateCSV()
 		return "Goodbye!"
 	}
 

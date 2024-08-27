@@ -50,6 +50,7 @@ func (f Form) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		switch {
 		case key.Matches(msg, keys.Quit):
+			updateCSV()
 			return f, tea.Quit
 		case key.Matches(msg, keys.Back):
 			return board.Update(nil)
